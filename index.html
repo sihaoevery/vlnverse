@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="VLNVerse: A Benchmark for Vision-Language Navigation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VLNVerse Project Page</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #fdfdfd; /* 稍微带一点灰的白，护眼 */
+    }
+    .title {
+      font-family: 'Google Sans', sans-serif;
+      color: #363636;
+    }
+    .publication-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .publication-authors {
+      font-size: 1.2rem;
+      color: #209cee; /* 蓝色链接色 */
+    }
+    .publication-links {
+      margin-top: 20px;
+    }
+    /* 按钮样式优化 */
+    .button.is-dark {
+      background-color: #363636;
+      border-radius: 30px; /* 圆角按钮 */
+    }
+    .button.is-dark:hover {
+      background-color: #555;
+    }
+    
+    /* 视频/图片容器 */
+    .teaser-video {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* 摘要区域 */
+    .content p {
+      text-align: justify;
+      font-size: 1.1em;
+    }
+
+    /* Trajectory 展示区域 (简单模拟轮播图效果的容器) */
+    .gallery-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 15px;
+      padding-bottom: 15px;
+    }
+    .gallery-item {
+      min-width: 300px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .gallery-item img {
+      width: 100%;
+      display: block;
+    }
+    .gallery-caption {
+      padding: 8px;
+      font-size: 0.9em;
+      text-align: center;
+      background: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths has-text-centered">
+          
+          <h1 class="title is-1 publication-title">VLNVerse: A Benchmark for Vision-Language Navigation</h1>
+          
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Author One<sup>1</sup>,</span>
+            <span class="author-block">Author Two<sup>2</sup>,</span>
+            <span class="author-block">Author Three<sup>1</sup></span>
+          </div>
+
+          <div class="is-size-6 publication-authors">
+            <span class="author-block"><sup>1</sup>University A,</span>
+            <span class="author-block"><sup>2</sup>University B</span>
+          </div>
+
+          <div class="publication-links">
+            <span class="link-block">
+              <a href="#" class="button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="button is-normal is-rounded is-dark">
+                <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Code</span>
+              </a>
+            </span>
+            <span class="link-block">
+              <a href="#" class="button is-normal is-rounded is-dark">
+                <span class="icon"><i class="far fa-images"></i></span>
+                <span>Data</span>
+              </a>
+            </span>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <img src="https://via.placeholder.com/900x400?text=Robot+Demo+Highlight+(GIF/Video)" class="teaser-video">
+          <h2 class="subtitle has-text-centered" style="margin-top: 15px;">
+            Our agent navigates in photorealistic environments with complex instructions.
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Vision-Language Navigation (VLN) requires an agent to navigate through 3D environments...
+            (把你的 Abstract 填在这里)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Trajectory Visualization</h2>
+    <div class="content has-text-centered">
+        <p>Comparison of trajectories generated by different methods or in different scenes.</p>
+    </div>
+    
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/300x300?text=Trajectory+1" alt="Traj 1">
+            <div class="gallery-caption">Instruction: "Go to the kitchen..."</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/300x300?text=Trajectory+2" alt="Traj 2">
+            <div class="gallery-caption">Instruction: "Find the bedroom..."</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/300x300?text=Trajectory+3" alt="Traj 3">
+            <div class="gallery-caption">Instruction: "Turn left..."</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://via.placeholder.com/300x300?text=Trajectory+4" alt="Traj 4">
+            <div class="gallery-caption">Instruction: "Stop at the sofa..."</div>
+        </div>
+    </div>
+    <p class="is-size-7 has-text-centered" style="color: #999;">Scroll horizontally to see more results &rarr;</p>
+
+  </div>
+</section>
+
+<section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Real-world / Simulation Demos</h2>
+      <div class="columns is-centered">
+          <div class="column">
+              <img src="https://via.placeholder.com/400x300?text=Demo+A" style="width:100%; border-radius:8px;">
+              <p class="has-text-centered"><b>Success Case</b></p>
+          </div>
+          <div class="column">
+              <img src="https://via.placeholder.com/400x300?text=Demo+B" style="width:100%; border-radius:8px;">
+              <p class="has-text-centered"><b>Failure Recovery</b></p>
+          </div>
+      </div>
+    </div>
+</section>
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      Website template adapted from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> and <a href="https://llava-vl.github.io/">LLaVA</a>.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>
