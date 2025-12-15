@@ -77,6 +77,78 @@
       text-align: center;
       background: #f5f5f5;
     }
+
+    /* 视频切换组件样式 */
+    .traj-viewer {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .video-container {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      background: #000;
+    }
+
+    .video-container video {
+      width: 100%;
+      display: block;
+    }
+
+    .video-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .video-counter {
+      font-size: 1rem;
+      color: #666;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .instruction-box {
+      margin-top: 20px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border-left: 4px solid #209cee;
+    }
+
+    .instruction-box strong {
+      color: #363636;
+    }
+
+    .instruction-box p {
+      margin-top: 8px;
+      color: #4a4a4a;
+      line-height: 1.6;
+    }
+
+    /* 移动端适配 */
+    @media screen and (max-width: 768px) {
+      .traj-viewer {
+        padding: 0 15px;
+      }
+
+      .video-nav {
+        gap: 10px;
+      }
+
+      .video-nav .button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+
+      .instruction-box {
+        padding: 15px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -87,17 +159,31 @@
       <div class="columns is-centered">
         <div class="column is-four-fifths has-text-centered">
           
-          <h1 class="title is-1 publication-title">VLNVerse: A Benchmark for Vision-Language Navigation</h1>
+          <h1 class="title is-1 publication-title">VLNVerse: A Benchmark for Vision-Language Navigation with Versatile, Embodied, Realistic Simulation and Evaluation</h1>
           
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Author One<sup>1</sup>,</span>
-            <span class="author-block">Author Two<sup>2</sup>,</span>
-            <span class="author-block">Author Three<sup>1</sup></span>
+            <span class="author-block">Sihao Lin<sup>1</sup>,</span>
+            <span class="author-block">Zerui Li<sup>1</sup>,</span>
+            <span class="author-block">Xunyi Zhao<sup>1</sup></span>
+            <span class="author-block">Gengze Zhou<sup>1</sup></span>
+            <span class="author-block">Liuyi Wang<sup>2</sup></span>
+            <span class="author-block">Rong Wei<sup>3</sup></span>
+            <span class="author-block">Rui Tang<sup>3</sup></span>
+            <span class="author-block">Juncheng Li<sup>4</sup></span>
+            <span class="author-block">Hanqing Wang<sup>5</sup></span>
+            <span class="author-block">Jiangmiao Pang<sup>5</sup></span>
+            <span class="author-block">Anton van den Hengel<sup>1</sup></span>
+            <span class="author-block">Jiajun Liu<sup>6</sup></span>
+            <span class="author-block">Qi Wu<sup>1</sup></span>
           </div>
 
           <div class="is-size-6 publication-authors">
-            <span class="author-block"><sup>1</sup>University A,</span>
-            <span class="author-block"><sup>2</sup>University B</span>
+            <span class="author-block"><sup>1</sup>Adelaide University,</span>
+            <span class="author-block"><sup>2</sup>Tongji University,</span>
+            <span class="author-block"><sup>3</sup>ManyCore,</span>
+            <span class="author-block"><sup>4</sup>Zhejiang University,</span>
+            <span class="author-block"><sup>5</sup>Shanghai AI Lab,</span>
+            <span class="author-block"><sup>6</sup>CSIRO Data61</span>
           </div>
 
           <div class="publication-links">
@@ -127,20 +213,162 @@
   </div>
 </section>
 
+
+
+<style>
+  /* 1. 网格布局 */
+  .teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  /* 2. 卡片容器 */
+  .grid-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 3. 视频样式 */
+  .grid-item video {
+    width: 100%;
+    /* 【建议】120px太扁了，容易切掉关键画面，改为 180px 或 200px 效果更好 */
+    height: 120px; 
+    object-fit: cover;
+    object-position: top center; /* 关键：只切底部文字 */
+    display: block;
+  }
+
+  /* 4. 文字区域样式 */
+  .gallery-caption {
+    padding: 12px 15px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #4a4a4a;
+    background-color: #fafafa;
+    border-top: 1px solid #eee;
+    flex-grow: 1;
+    /* 【建议】长文本左对齐更易阅读，虽然大标题是居中的 */
+    text-align: left; 
+  }
+  
+  .gallery-caption strong {
+    color: #333;
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  /* 手机端适配 */
+  @media screen and (max-width: 768px) {
+    .teaser-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+  }
+</style>
+
 <section class="hero is-light is-small">
   <div class="hero-body">
     <div class="container">
       <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <img src="https://via.placeholder.com/900x400?text=Robot+Demo+Highlight+(GIF/Video)" class="teaser-video">
-          <h2 class="subtitle has-text-centered" style="margin-top: 15px;">
-            Our agent navigates in photorealistic environments with complex instructions.
-          </h2>
-        </div>
+        <div class="column is-four-fifths" style="max-width: 1100px;">
+
+          <h2 class="title is-3">Qualitative Examples</h2>
+          <p style="margin-bottom: 20px; color: #666;">
+            We visualize the agent's trajectories.
+          </p>
+
+          <div class="teaser-grid">
+            
+            <div class="grid-item">
+              <video autoplay muted loop playsinline>
+                <source src="./static/demo/traj_demo_0.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">
+                Turn left, passing the decorative partition on your right, to face the open doorway. Walk forward through the doorway into the living room.
+              </div>
+            </div>
+
+            <div class="grid-item">
+              <video autoplay muted loop playsinline>
+                <source src="./static/demo/traj_demo_1.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">
+                Turn right from the wall with a television on your right. Passing a bedroom entrance on your left and a wardrobe on your far left.
+              </div>
+            </div>
+
+            <div class="grid-item">
+              <video autoplay muted loop playsinline>
+                <source src="./static/demo/traj_demo_2.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">
+                Turn right to face the open doorway to the living room. Enter the living room, with a sofa on your left and a coffee table in front of it.
+              </div>
+            </div>
+
+            <div class="grid-item">
+              <video autoplay muted loop playsinline>
+                <source src="./static/demo/traj_demo_3.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">
+                Walk forward to exit the room with marble walls, leaving the sink on your left. Proceed straight down the hallway.
+              </div>
+            </div>
+
+            <div class="grid-item">
+              <video autoplay muted loop playsinline>
+                <source src="./static/demo/traj_demo_4.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">
+                Turn left, away from the sofa and coffee table. Walk forward through the doorway that was to your left, passing the decorative screen on your right. Go straight up the short flight of steps.
+              </div>
+            </div>
+            <div class="grid-item">
+              <video autoplay muted loop playsinline>
+                <source src="./static/demo/traj_demo_5.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">
+                Walk forward from the tiled kitchen area. Enter the main room, passing a dining area with a wooden cabinet and chairs on your right. Continue forward into the living room.
+              </div>
+            </div>
+            <div class="grid-item">
+              <video autoplay muted loop playsinline>
+                <source src="./static/demo/traj_demo_6.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">
+                Go straight through the doorway, passing a tiled room entrance on your left. Continue straight down the hallway, with a bedroom on your right. Enter the living and dining area.
+              </div>
+            </div>
+            <div class="grid-item">
+              <video autoplay muted loop playsinline>
+                <source src="./static/demo/traj_demo_7.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">
+                Turn right into the hallway, passing the doorway to a tiled room on your right. Walk straight down the hallway, passing a living area with a couch on your left and a dining area.
+              </div>
+            </div>
+            <div class="grid-item">
+              <video autoplay muted loop playsinline>
+                <source src="./static/demo/traj_demo_8.mp4" type="video/mp4">
+              </video>
+              <div class="gallery-caption">
+                Turn left, passing a bedroom entrance on your immediate left. Continue turning left to face the dining area with a dining table in front of you. Walk straight through the dining area.
+              </div>
+            </div>
+          </div> </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -149,8 +377,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Vision-Language Navigation (VLN) requires an agent to navigate through 3D environments...
-            (把你的 Abstract 填在这里)
+            Despite remarkable progress in Vision-Language Navigation (VLN), existing benchmarks remain confined to fixed, small-scale datasets with naive physical simulation. These shortcomings limit the insight that the benchmarks provide into sim-to-real generalization, and create a significant research gap. Furthermore, task fragmentation prevents unified/shared progress in the area, while limited data scales fail to meet the demands of modern LLM-based pretraining. To overcome these limitations, we introduce VLNVerse: a new large-scale, extensible benchmark designed for <b>V</b>ersatile, <b>E</b>mbodied, <b>R</b>ealistic <b>S</b>imulation, and <b>E</b>valuation. VLNVerse redefines VLN as a scalable, full-stack embodied AI problem. Its <em>Versatile</em> nature unifies previously fragmented tasks into a single framework and provides an extensible toolkit for researchers. Its <em>Embodied</em> design moves beyond intangible and teleporting "ghost" agents that support full-kinematics in a <em>Realistic Simulation</em> powered by a robust physics engine. We leverage the scale and diversity of VLNVerse to conduct a comprehensive <em>Evaluation</em> of existing methods, from classic models to MLLM-based agents. We also propose a novel unified multi-task model capable of addressing all tasks within the benchmark. VLNVerse aims to narrow the gap between simulated navigation and real-world generalization, providing the community with a vital tool to boost research towards scalable, general-purpose embodied locomotion agents.
           </p>
         </div>
       </div>
@@ -161,47 +388,70 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Trajectory Visualization</h2>
-    <div class="content has-text-centered">
-        <p>Comparison of trajectories generated by different methods or in different scenes.</p>
-    </div>
-    
-    <div class="gallery-container">
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/300x300?text=Trajectory+1" alt="Traj 1">
-            <div class="gallery-caption">Instruction: "Go to the kitchen..."</div>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/300x300?text=Trajectory+2" alt="Traj 2">
-            <div class="gallery-caption">Instruction: "Find the bedroom..."</div>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/300x300?text=Trajectory+3" alt="Traj 3">
-            <div class="gallery-caption">Instruction: "Turn left..."</div>
-        </div>
-        <div class="gallery-item">
-            <img src="https://via.placeholder.com/300x300?text=Trajectory+4" alt="Traj 4">
-            <div class="gallery-caption">Instruction: "Stop at the sofa..."</div>
-        </div>
-    </div>
-    <p class="is-size-7 has-text-centered" style="color: #999;">Scroll horizontally to see more results &rarr;</p>
 
+    <!-- 视频切换组件 -->
+    <div class="traj-viewer">
+      <!-- 视频容器 -->
+      <div class="video-container">
+        <video id="traj-video" muted playsinline>
+          <source id="traj-source" src="./static/traj/0100_00.mp4" type="video/mp4">
+        </video>
+      </div>
+
+      <!-- 导航按钮 -->
+      <div class="video-nav">
+        <button id="prev-traj" class="button is-dark is-rounded">
+          <span class="icon"><i class="fas fa-chevron-left"></i></span>
+          <span>Prev</span>
+        </button>
+        <button id="play-pause-btn" class="button is-info is-rounded">
+          <span class="icon"><i id="play-pause-icon" class="fas fa-play"></i></span>
+        </button>
+        <span id="video-counter" class="video-counter"></span>
+        <button id="next-traj" class="button is-dark is-rounded">
+          <span>Next</span>
+          <span class="icon"><i class="fas fa-chevron-right"></i></span>
+        </button>
+      </div>
+
+      <!-- Instruction 区域 (placeholder) -->
+      <div class="instruction-box" id="instruction-box">
+        <strong>Instruction:</strong>
+        <p id="instruction-text">[Instruction placeholder - to be filled with actual navigation instructions]</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Real-world / Simulation Demos</h2>
-      <div class="columns is-centered">
-          <div class="column">
-              <img src="https://via.placeholder.com/400x300?text=Demo+A" style="width:100%; border-radius:8px;">
-              <p class="has-text-centered"><b>Success Case</b></p>
-          </div>
-          <div class="column">
-              <img src="https://via.placeholder.com/400x300?text=Demo+B" style="width:100%; border-radius:8px;">
-              <p class="has-text-centered"><b>Failure Recovery</b></p>
-          </div>
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Benchmark Statistics</h2>
+
+    <!-- Row 1: comprehensive_dashboard -->
+    <div class="has-text-centered" style="margin-bottom: 30px;">
+      <p style="margin-bottom:12px; color:#666; font-size:1.2rem; font-weight:600;">Navigable Area</p>
+      <img src="./static/stat/comprehensive_dashboard.png" style="width:100%; max-width:900px; border-radius:8px;">
+    </div>
+
+    <!-- Row 2: sun (left) + wordcloud & length_distribution (right) -->
+    <p class="has-text-centered" style="margin-bottom:15px; color:#666; font-size:1.2rem; font-weight:600;">Navigation Instruction</p>
+    <div class="columns is-centered is-vcentered">
+      <div class="column is-half has-text-centered">
+        <img src="./static/stat/sun.png" style="width:100%; border-radius:8px;">
+        <p style="margin-top:8px; color:#666;">Instruction Hierarchy</p>
+      </div>
+      <div class="column is-half" style="display: flex; flex-direction: column; justify-content: center; gap: 15px;">
+        <div class="has-text-centered">
+          <img src="./static/stat/wordcloud_16-9.png" style="width:90%; border-radius:8px;">
+          <p style="margin-top:8px; color:#666;">Landmarks</p>
+        </div>
+        <div class="has-text-centered">
+          <img src="./static/stat/length_distribution_XL.png" style="width:100%; border-radius:8px;">
+          <p style="margin-top:8px; color:#666;">Instruction Length</p>
+        </div>
       </div>
     </div>
+  </div>
 </section>
 
 <footer class="footer">
@@ -211,6 +461,101 @@
     </p>
   </div>
 </footer>
+
+<script>
+(function() {
+  // 视频列表
+  const videos = [
+    { src: './static/traj/0100_00.mp4', instruction: 'Walk forward through the bedroom, passing the TV on your left and the bed on your right. Go through the doorway to enter the dining room. Walk straight through the dining room, keeping the dining table on your left and a side table on your right. Turn left into the kitchen doorway. Walk straight into the kitchen, with the kitchen counter and appliances on your right. Stop in front of the raised platform with the window.' },
+    { src: './static/traj/0100_13.mp4', instruction: 'From your starting position, turn left so the TV and cabinet are on your right. Walk forward between the long wooden countertop on your right and the sofa and desk on your left. Continue straight into the hallway, with cabinets on your right. Go through the doorway at the end of the hallway to enter the dining room. Walk forward through the dining room, passing the dining table on your left and louvered bi-fold doors on your right. Turn left through the doorway. Walk forward into the room, keeping the bookshelf on your left, and stop in front of the window with the desk and chair.' },
+    { src: './static/traj/0101_00.mp4', instruction: 'Walk forward through the living room, passing a large couch on your left and a TV entertainment unit on your right. Continue straight until you approach two doorways. Turn left into the first doorway on your left to enter a study. Walk straight through the study, with built-in cabinets on your left and a long desk on your right, and stop in front of the window.' },
+    { src: './static/traj/0104_00.mp4', instruction: 'Turn left from the bathroom, leaving the sink and mirror on your right. Walk straight down the hallway, passing a room entrance on your left and an open kitchen area on your right. Continue straight into the living room, walking towards the large windows in front of you. Stop in front of the large windows overlooking the outdoor landscape.' },
+    { src: './static/traj/0104_23.mp4', instruction: 'Walk forward from the kitchen, passing the kitchen counter on your left and a dining table on your right. Continue straight into the main area, keeping the living room entrance on your left, then turn right into the hallway with a large abstract painting on your right. Walk straight down this hallway, then turn right into the open doorway. Enter the bathroom, passing the sink and vanity on your left, and stop in front of the shower.' },
+    { src: './static/traj/0107_13.mp4', instruction: 'Walk straight past the dining area on your left and the living area with a television on your right, entering the open hallway. Proceed straight through the hallway, then turn left to enter the bedroom. Walk forward into the bedroom and stop in front of the bed, with a nightstand and wardrobe on its right.' },
+    { src: './static/traj/0111_01.mp4', instruction: 'Turn right to face the hallway opening, with the white wardrobe on your right. Walk straight into the hallway, passing the white wardrobes on your right, until you reach an open doorway on your left. Turn left to enter the dining and living room area. Walk forward into the living room, passing a dining table on your right, and stop in front of the large sectional sofa and coffee table, with the television on your left.' },
+    { src: './static/traj/0111_93.mp4', instruction: 'Walk forward from the doorway, passing a dining table on your right. Continue straight through the room, keeping the living room with a couch on your left and a television on the wall to your right. Turn left into the hallway. Walk straight down the hallway, then enter the bathroom. Stop in front of the glass shower enclosure, with the sink to your left.' },
+    { src: './static/traj/0115_11.mp4', instruction: 'Walk forward into the living room, passing a brown armchair and a green sofa on your left, and a large TV on your right. Continue straight past a coffee table and a dining table on your left. Turn right, passing the kitchen entrance on your left. Walk towards the washing machine on your left, stopping directly in front of it with a large window showing a lake view on your right.' },
+    { src: './static/traj/0115_20.mp4', instruction: 'Walk forward through the living area, passing a green couch and coffee table on your left and a large TV on your right. Continue straight, passing a dining table on your left, and then turn right to enter the kitchen. Walk forward into the kitchen and stop in front of the counter with the stove and kettle directly ahead.' }
+  ];
+
+  let currentIndex = 0;
+  let loopCount = 0;
+  const maxLoops = 3;
+
+  const video = document.getElementById('traj-video');
+  const source = document.getElementById('traj-source');
+  const counter = document.getElementById('video-counter');
+  const instructionText = document.getElementById('instruction-text');
+  const prevBtn = document.getElementById('prev-traj');
+  const nextBtn = document.getElementById('next-traj');
+  const playPauseBtn = document.getElementById('play-pause-btn');
+  const playPauseIcon = document.getElementById('play-pause-icon');
+
+  // 更新播放/暂停按钮图标
+  function updatePlayPauseIcon() {
+    if (video.paused) {
+      playPauseIcon.classList.remove('fa-pause');
+      playPauseIcon.classList.add('fa-play');
+    } else {
+      playPauseIcon.classList.remove('fa-play');
+      playPauseIcon.classList.add('fa-pause');
+    }
+  }
+
+  // 切换视频
+  function updateVideo() {
+    loopCount = 0; // 重置循环计数
+    source.src = videos[currentIndex].src;
+    video.load();
+    video.play();
+    counter.textContent = `${currentIndex + 1} / ${videos.length}`;
+    instructionText.textContent = videos[currentIndex].instruction;
+    updatePlayPauseIcon();
+  }
+
+  // 视频播放结束时（一次循环完成）
+  video.addEventListener('ended', () => {
+    loopCount++;
+    if (loopCount >= maxLoops) {
+      // 播放3次后暂停
+      video.pause();
+      updatePlayPauseIcon();
+    } else {
+      // 继续播放下一次循环
+      video.currentTime = 0;
+      video.play();
+    }
+  });
+
+  // 播放/暂停按钮
+  playPauseBtn.addEventListener('click', () => {
+    if (video.paused) {
+      // 如果是因为播放3次而暂停，重置计数
+      if (loopCount >= maxLoops) {
+        loopCount = 0;
+      }
+      video.play();
+    } else {
+      video.pause();
+    }
+    updatePlayPauseIcon();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + videos.length) % videos.length;
+    updateVideo();
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % videos.length;
+    updateVideo();
+  });
+
+  // 初始化计数器和instruction
+  counter.textContent = `${currentIndex + 1} / ${videos.length}`;
+  instructionText.textContent = videos[currentIndex].instruction;
+})();
+</script>
 
 </body>
 </html>
