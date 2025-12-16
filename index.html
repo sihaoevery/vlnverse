@@ -162,28 +162,29 @@
           <h1 class="title is-1 publication-title">VLNVerse: A Benchmark for Vision-Language Navigation with Versatile, Embodied, Realistic Simulation and Evaluation</h1>
           
           <div class="is-size-5 publication-authors">
-            <span class="author-block">Sihao Lin<sup>1</sup>,</span>
-            <span class="author-block">Zerui Li<sup>1</sup>,</span>
-            <span class="author-block">Xunyi Zhao<sup>1</sup></span>
+            <span class="author-block">Sihao Lin<sup>1,2</sup>,</span>
+            <span class="author-block">Zerui Li<sup>1,2</sup>,</span>
+            <span class="author-block">Xunyi Zhao<sup>1,2</sup></span>
             <span class="author-block">Gengze Zhou<sup>1</sup></span>
-            <span class="author-block">Liuyi Wang<sup>2</sup></span>
-            <span class="author-block">Rong Wei<sup>3</sup></span>
-            <span class="author-block">Rui Tang<sup>3</sup></span>
-            <span class="author-block">Juncheng Li<sup>4</sup></span>
-            <span class="author-block">Hanqing Wang<sup>5</sup></span>
-            <span class="author-block">Jiangmiao Pang<sup>5</sup></span>
-            <span class="author-block">Anton van den Hengel<sup>1</sup></span>
-            <span class="author-block">Jiajun Liu<sup>6</sup></span>
-            <span class="author-block">Qi Wu<sup>1</sup></span>
+            <span class="author-block">Liuyi Wang<sup>3</sup></span>
+            <span class="author-block">Rong Wei<sup>4</sup></span>
+            <span class="author-block">Rui Tang<sup>5</sup></span>
+            <span class="author-block">Juncheng Li<sup>5</sup></span>
+            <span class="author-block">Hanqing Wang<sup>6</sup></span>
+            <span class="author-block">Jiangmiao Pang<sup>6</sup></span>
+            <span class="author-block">Anton van den Hengel<sup>1,2</sup></span>
+            <span class="author-block">Jiajun Liu<sup>7</sup></span>
+            <span class="author-block">Qi Wu<sup>1,2</sup></span>
           </div>
 
           <div class="is-size-6 publication-authors">
             <span class="author-block"><sup>1</sup>Adelaide University,</span>
-            <span class="author-block"><sup>2</sup>Tongji University,</span>
-            <span class="author-block"><sup>3</sup>ManyCore,</span>
-            <span class="author-block"><sup>4</sup>Zhejiang University,</span>
-            <span class="author-block"><sup>5</sup>Shanghai AI Lab,</span>
-            <span class="author-block"><sup>6</sup>CSIRO Data61</span>
+            <span class="author-block"><sup>2</sup>Responsible AI Research Centre, Australian Institute for Machine Learning,</span>
+            <span class="author-block"><sup>3</sup>Tongji University,</span>
+            <span class="author-block"><sup>4</sup>ManyCore,</span>
+            <span class="author-block"><sup>5</sup>Zhejiang University,</span>
+            <span class="author-block"><sup>6</sup>Shanghai AI Lab,</span>
+            <span class="author-block"><sup>7</sup>CSIRO Data61</span>
           </div>
 
           <div class="publication-links">
@@ -199,12 +200,12 @@
                 <span>Code</span>
               </a>
             </span>
-            <span class="link-block">
+            <!-- <span class="link-block">
               <a href="#" class="button is-normal is-rounded is-dark">
                 <span class="icon"><i class="far fa-images"></i></span>
                 <span>Data</span>
               </a>
-            </span>
+            </span> -->
           </div>
 
         </div>
@@ -393,7 +394,7 @@
     <div class="traj-viewer">
       <!-- 视频容器 -->
       <div class="video-container">
-        <video id="traj-video" muted playsinline>
+        <video id="traj-video" autoplay muted loop playsinline>
           <source id="traj-source" src="./static/traj/0100_00.mp4" type="video/mp4">
         </video>
       </div>
@@ -403,9 +404,6 @@
         <button id="prev-traj" class="button is-dark is-rounded">
           <span class="icon"><i class="fas fa-chevron-left"></i></span>
           <span>Prev</span>
-        </button>
-        <button id="play-pause-btn" class="button is-info is-rounded">
-          <span class="icon"><i id="play-pause-icon" class="fas fa-play"></i></span>
         </button>
         <span id="video-counter" class="video-counter"></span>
         <button id="next-traj" class="button is-dark is-rounded">
@@ -422,6 +420,111 @@
     </div>
   </div>
 </section>
+
+<style>
+  /* 确保这些 CSS 还在你的 <head> 里，否则 Terminal 只是个黑框，没有那些红黄绿的小点 */
+  .terminal-window {
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    overflow: hidden;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    text-align: left;
+    margin-top: 20px; /* 如果觉得跟标题太近，可以适当调整 */
+  }
+  
+  .terminal-header { /* 之前给你的样式，如果没加进去要加上 */
+    background-color: #2d2d2d;
+    padding: 10px 15px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  /* 红黄绿小点 */
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .red { background-color: #ff5f56; }
+  .yellow { background-color: #ffbd2e; }
+  .green { background-color: #27c93f; }
+  
+  .terminal-body {
+    padding: 20px;
+    color: #d4d4d4;
+    font-size: 0.85rem;
+    line-height: 1.6;
+  }
+
+  .cmd { color: #fff; }
+  .cmd::before { content: "$ "; color: #27c93f; font-weight: bold; }
+  .comment { color: #6a9955; font-style: italic; }
+
+  /* 视频外框，加个白边看起来像个 App */
+  .demo-video-wrapper {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border: 4px solid #fff;
+  }
+</style>
+
+<section class="section is-light">
+  <div class="container is-max-desktop">
+    
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">🎮 Interactive Playground</h2>
+        <div class="content">
+          <p>
+            Do you believe you are a good navigator? We provide a <strong>human-in-the-loop demo</strong> where you can act as the robot. Navigate through our realistic scenes following instructions, and our system will <strong>score your trajectory</strong> in real-time.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="columns is-vcentered">
+      
+      <div class="column is-8"> 
+        <div class="demo-video-wrapper">
+          <video autoplay muted loop playsinline width="100%">
+            <source src="./static/screen_recording.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="is-size-7 has-text-centered" style="margin-top: 10px; color: #666;">
+          <i>*Screen recording of a user navigating the "Living Room" scene.</i>
+        </p>
+      </div>
+
+      <div class="column is-4">
+        <h3 class="title is-5">🚀 Quick Start</h3>
+        
+        <div class="terminal-window">
+          <div class="terminal-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="terminal-body"> 
+            <div class="comment"># 1. Clone repo</div> 
+            <div class="cmd" style="word-break: break-all;">git clone https://github.com/YourName/VLNVerse.git</div>
+            <br>
+            <div class="comment"># 2. Download data</div>
+            <div class="cmd">bash scripts/download_demo_data.sh</div>
+            <br>
+            <div class="comment"># 3. Launch Demo</div>
+            <!-- <div class="cmd">python demo/play.py --scene_id 0100</div> -->
+            <div class="cmd">python ./run_navigation_camera.py --index 30</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: 20px;">
+          <div class="tags">
+            <span class="tag is-info is-light">🏆 Real-time Scoring</span>
+            <!-- <span class="tag is-success is-light">🧩 Physics Enabled</span> -->
+          </div>
+        </div>
+
+      </div>
+    </div> </div> </section>
 
 <section class="section">
   <div class="container is-max-desktop">
@@ -479,8 +582,6 @@
   ];
 
   let currentIndex = 0;
-  let loopCount = 0;
-  const maxLoops = 3;
 
   const video = document.getElementById('traj-video');
   const source = document.getElementById('traj-source');
@@ -488,58 +589,15 @@
   const instructionText = document.getElementById('instruction-text');
   const prevBtn = document.getElementById('prev-traj');
   const nextBtn = document.getElementById('next-traj');
-  const playPauseBtn = document.getElementById('play-pause-btn');
-  const playPauseIcon = document.getElementById('play-pause-icon');
-
-  // 更新播放/暂停按钮图标
-  function updatePlayPauseIcon() {
-    if (video.paused) {
-      playPauseIcon.classList.remove('fa-pause');
-      playPauseIcon.classList.add('fa-play');
-    } else {
-      playPauseIcon.classList.remove('fa-play');
-      playPauseIcon.classList.add('fa-pause');
-    }
-  }
 
   // 切换视频
   function updateVideo() {
-    loopCount = 0; // 重置循环计数
     source.src = videos[currentIndex].src;
     video.load();
     video.play();
     counter.textContent = `${currentIndex + 1} / ${videos.length}`;
     instructionText.textContent = videos[currentIndex].instruction;
-    updatePlayPauseIcon();
   }
-
-  // 视频播放结束时（一次循环完成）
-  video.addEventListener('ended', () => {
-    loopCount++;
-    if (loopCount >= maxLoops) {
-      // 播放3次后暂停
-      video.pause();
-      updatePlayPauseIcon();
-    } else {
-      // 继续播放下一次循环
-      video.currentTime = 0;
-      video.play();
-    }
-  });
-
-  // 播放/暂停按钮
-  playPauseBtn.addEventListener('click', () => {
-    if (video.paused) {
-      // 如果是因为播放3次而暂停，重置计数
-      if (loopCount >= maxLoops) {
-        loopCount = 0;
-      }
-      video.play();
-    } else {
-      video.pause();
-    }
-    updatePlayPauseIcon();
-  });
 
   prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + videos.length) % videos.length;
